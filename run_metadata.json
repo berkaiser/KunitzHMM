@@ -1,0 +1,168 @@
+{
+  "tool_versions": {
+    "python": "3.13.18",
+    "mmseqs2": "8cc5ce367b5638c4306c2d7cfc652dd099a4643f",
+    "hmmer": "3.4",
+    "blast": "2.12.0+",
+    "mTM-align": "20220104",
+    "numpy": "2.4.6",
+    "pandas": "2.2.3"
+  },
+  "pdb_query_date": "2026-11-11T17:21:46+00:00",
+  "pdb_entities": 136,
+  "pdb_entries": 136,
+  "clusters": 22,
+  "structures_round1": 22,
+  "structural_outliers": [],
+  "structures_final": 22,
+  "mtm_round1": {
+    "Average length": 56.4545,
+    "Lcore": 37.0,
+    "ccRMSD": 0.649716,
+    "ccTM-score": 0.663551,
+    "Lali": 52.1082,
+    "RMSD": 0.753486,
+    "TM-score": 0.911268
+  },
+  "mtm_final": {
+    "Average length": 56.4545,
+    "Lcore": 37.0,
+    "ccRMSD": 0.649716,
+    "ccTM-score": 0.663551,
+    "Lali": 52.1082,
+    "RMSD": 0.753486,
+    "TM-score": 0.911268
+  },
+  "alignment_columns": 92,
+  "hmm_length": 56,
+  "hmm_nseq": 22,
+  "hmm_effn": 1.689209,
+  "hmm_consensus": "rpdfClepkdtGpCraliiryfynakegkcqeFvYGGcegnrNnFeseeeckkvCa",
+  "hmm_cysteines": [
+    5,
+    14,
+    30,
+    38,
+    51,
+    55
+  ],
+  "uniprot_release": "2026_04",
+  "uniprot_download_date": "2026-11-11T17:24:20+00:00",
+  "uniprot_positives": 398,
+  "uniprot_negatives": 575675,
+  "positives_removed": 17,
+  "positives_test": 381,
+  "hits_positives": 381,
+  "hits_negatives": 5792,
+  "validation_full": {
+    "threshold": 1e-06,
+    "thresholds_per_fold": [
+      1e-05,
+      1e-08
+    ],
+    "whole_dataset": {
+      "threshold": 1e-06,
+      "TP": 376,
+      "FP": 1,
+      "TN": 575674,
+      "FN": 5,
+      "TPR": 0.9868766404199475,
+      "FPR": 1.7370912407174187e-06,
+      "precision": 0.9973474801061007,
+      "accuracy": 0.9999895843459664,
+      "MCC": 0.9920930534055984
+    },
+    "test_MCC": [
+      0.9894804589832279,
+      0.9920686813038593
+    ],
+    "false_negatives": [
+      "sp|D3GGZ8|BLI5_HAECO",
+      "sp|O62247|BLI5_CAEEL",
+      "sp|A0A1Q1NL17|HA11_HYAAI",
+      "sp|Q8WPG5|KUNI_ORNKA",
+      "sp|P86963|KCP2_PINMA"
+    ],
+    "false_positives": [
+      "sp|P84555|TIQ7_RHISA"
+    ]
+  },
+  "validation_domain": {
+    "threshold": 1e-06,
+    "thresholds_per_fold": [
+      1e-05,
+      1e-08
+    ],
+    "whole_dataset": {
+      "threshold": 1e-06,
+      "TP": 375,
+      "FP": 1,
+      "TN": 575674,
+      "FN": 6,
+      "TPR": 0.984251968503937,
+      "FPR": 1.7370912407174187e-06,
+      "precision": 0.9973404255319149,
+      "accuracy": 0.9999878484036274,
+      "MCC": 0.9907685331707846
+    },
+    "test_MCC": [
+      0.9868296597154476,
+      0.9920686813038593
+    ],
+    "false_negatives": [
+      "sp|D3GGZ8|BLI5_HAECO",
+      "sp|O62247|BLI5_CAEEL",
+      "sp|A0A1Q1NL17|HA11_HYAAI",
+      "sp|Q8WPG5|KUNI_ORNKA",
+      "sp|Q8MVC4|TFPIL_IXOSC",
+      "sp|P86963|KCP2_PINMA"
+    ],
+    "false_positives": [
+      "sp|P84555|TIQ7_RHISA"
+    ]
+  },
+  "stability_full": {
+    "repeats": 1000,
+    "final_threshold_frequency": {
+      "1e-04": 0.083,
+      "1e-05": 0.059,
+      "1e-06": 0.808,
+      "1e-07": 0.05
+    },
+    "test_MCC_mean": 0.9911838701574279,
+    "test_MCC_sd": 0.004104822478796716,
+    "test_MCC_min": 0.9765156695602936,
+    "test_MCC_max": 1.0
+  },
+  "stability_domain": {
+    "repeats": 1000,
+    "final_threshold_frequency": {
+      "1e-04": 0.387,
+      "1e-05": 0.108,
+      "1e-06": 0.488,
+      "1e-07": 0.017
+    },
+    "test_MCC_mean": 0.9885479442482268,
+    "test_MCC_sd": 0.004101905497862479,
+    "test_MCC_min": 0.9643957689278972,
+    "test_MCC_max": 1.0
+  },
+  "balanced_full": {
+    "repeats": 1000,
+    "threshold": 1e-06,
+    "precision_mean": 1.0,
+    "precision_sd": 0.0,
+    "MCC_mean": 0.9869616326122835,
+    "MCC_sd": 6.997904882755617e-15,
+    "FP_mean": 0.0
+  },
+  "balanced_domain": {
+    "repeats": 1000,
+    "threshold": 1e-06,
+    "precision_mean": 1.0,
+    "precision_sd": 0.0,
+    "MCC_mean": 0.9843740386976969,
+    "MCC_sd": 2.4992517438412917e-14,
+    "FP_mean": 0.0
+  }
+}
