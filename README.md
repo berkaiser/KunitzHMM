@@ -18,7 +18,7 @@ Laboratory of Bioinformatics 1, MSc Bioinformatics, University of Bologna. Autho
 | Selected E-value threshold | 10⁻⁶ (chosen in 81 % of 1,000 random splits) |
 | Performance at 10⁻⁶ | 376 / 381 detected, 1 false positive, MCC 0.992 |
 
-![Skylign logo of the HMM](03_hmm_build/skyling.png)
+![Skylign logo of the HMM](03_hmm_build/skylign.png)
 
 *Skylign logo of the 56-state HMM. The most conserved positions are Cys5 and Cys55; the six cysteines at positions 5, 14, 30, 38, 51 and 55 form the domain's three disulfide bonds (5–55, 14–38, 30–51).*
 
@@ -107,7 +107,7 @@ kunitz_hmm_pipeline.ipynb        the whole pipeline, with outputs
 03_hmm_build/
     pdb_kunitz.hmm               the profile HMM
     hmmbuild_summary.txt, hmmstat.txt
-    skyling.png                  Skylign logo
+    skylign.png                  Skylign logo
 04_validation/
     train.fasta                  the 22 training sequences
     train_vs_pos.blast           BLAST of training sequences against the positives
