@@ -14,6 +14,7 @@ Laboratory of Bioinformatics 1, MSc Bioinformatics, University of Bologna. Autho
 | Non-redundant representatives (MMseqs2, 95 % identity, 90 % coverage) | 22 |
 | Structural alignment (mTM-align) | TM-score 0.911, RMSD 0.75 Å, no outliers removed |
 | Profile HMM | 56 match states, all six cysteines conserved |
+| Consistency test | all 22 training sequences recovered (weakest E-value 1.6 × 10⁻²¹) |
 | Test set (UniProt release 2026_04) | 381 Kunitz proteins, 575,675 other proteins |
 | Selected E-value threshold | 10⁻⁶ (chosen in 81 % of 1,000 random splits) |
 | Performance at 10⁻⁶ | 376 / 381 detected, 1 false positive, MCC 0.992 |
@@ -30,8 +31,8 @@ The whole project runs from one notebook, [`kunitz_hmm_pipeline.ipynb`](kunitz_h
 |---|---|---|
 | 00 | `00_data_collection` | RCSB PDB search: Pfam PF00014, data collection resolution ≤ 3.5 Å, polymer entity length 40–80. Hits are returned as polymer entities, so only the Kunitz chain of each structure is kept. |
 | 01 | `01_clustering` | MMseqs2 `easy-cluster`, identity ≥ 0.95, coverage ≥ 0.9, `--cov-mode 1`. Sequences are sorted by name first, so the clusters are the same on every run. |
-| 02 | `02_structural_alignment` | Each representative chain is downloaded and aligned with mTM-align. Chains with average TM-score ≤ 0.5 or average RMSD ≥ 2 Å would be removed as outliers (none were). |
-| 03 | `03_hmm_build` | `hmmbuild` (HMMER 3.4) on the structural alignment. |
+| 02 | `02_structural_alignment` | Each representative chain is downloaded and aligned with mTM-align. Chains with average TM-score ≤ 0.5 or average RMSD ≥ 2 Å would be removed as outliers. None were: because step 00 keeps only the Kunitz chain of each entry, protease chains from co-crystallised complexes never enter the set, and all 22 structures align closely (lowest average TM-score 0.86, lowest pairwise TM-score 0.81). |
+| 03 | `03_hmm_build` | `hmmbuild` (HMMER 3.4) on the structural alignment. Consistency test: the 22 representative sequences are searched against the model with `hmmsearch --max -Z 1000`; all 22 must be recovered. |
 | 04 | `04_validation` | Swiss-Prot positives (PF00014) and negatives; positives ≥ 95 % identical to a training sequence are removed with BLAST; `hmmsearch --max -Z 1000`; two-fold cross-validation with MCC-based threshold selection; threshold stability over 1,000 random splits; balanced negative sampling and precision–recall. |
 
 ## How to run
@@ -88,7 +89,8 @@ A full run from scratch takes about five minutes, most of it the UniProt downloa
 ## Reproducibility
 
 - **Finished steps are skipped.** Each step writes its results to its folder and is not recomputed if they exist. Set `FORCE = True` in the setup cell to recompute everything.
-- **Data versions.** The PDB search was run on 11 November 2026 and the UniProt sets come from release 2026_04. Both databases grow over time. The PDB results are in this repository, so step 00 reuses them. The UniProt FASTA files (about 290 MB) are too large for GitHub and are downloaded again; a newer release can change the counts slightly.
+- **Data versions.** The PDB search was run on 14 November 2026 and the UniProt sets come from release 2026_04. Both databases grow over time. The PDB results and the positive set are in this repository, so they are reused. The negative set (`negatives.fasta`, about 290 MB) is too large for GitHub and is downloaded again; a newer UniProt release can change the counts slightly.
+- **Run record.** `run_metadata.json` stores the query date, the UniProt release, the tool versions and every number reported by the notebook.
 - **Fixed randomness.** The cross-validation folds, the 1,000 stability splits and the 1,000 balanced samples all use seed 42.
 - **Comparable E-values.** `hmmsearch -Z 1000` makes E-values independent of the database size.
 
@@ -96,6 +98,8 @@ A full run from scratch takes about five minutes, most of it the UniProt downloa
 
 ```
 kunitz_hmm_pipeline.ipynb        the whole pipeline, with outputs
+run_metadata.json                dates, versions and all reported numbers of this run
+bpti_pymol.py                    PyMOL script for the BPTI structure figure (see below)
 00_data_collection/              PDB search results (CSV, FASTA, entity IDs)
 01_clustering/                   MMseqs2 clusters and the 22 representatives
 02_structural_alignment/
@@ -107,15 +111,18 @@ kunitz_hmm_pipeline.ipynb        the whole pipeline, with outputs
 03_hmm_build/
     pdb_kunitz.hmm               the profile HMM
     hmmbuild_summary.txt, hmmstat.txt
+    consistency.tbl              hmmsearch of the 22 training sequences (consistency test)
     skylign.png                  Skylign logo
 04_validation/
     train.fasta                  the 22 training sequences
     train_vs_pos.blast           BLAST of training sequences against the positives
+    positives.fasta              all Swiss-Prot PF00014 entries (398)
     positives_clean.fasta        the 381 positives used for testing
     classification_*.tsv         E-value, true label and fold for every protein
     *_metrics_by_threshold.csv   metrics at each E-value threshold
     *_threshold_stability.*      1,000-split threshold stability
     *_precision_recall.*         precision–recall on the full and balanced sets
+    pos.out, neg.out             hmmsearch output for positives and negatives
     *_confusion_matrices.png, *_roc_fpfn_mcc.png
 ```
 
@@ -131,6 +138,17 @@ Files starting with `full_` use the full-sequence E-value (the one reported); fi
 
 *Left: how often each threshold was selected in 1,000 random splits. Right: the test MCC of those splits (0.991 ± 0.004).*
 
+## BPTI structure figure
+
+`bpti_pymol.py` draws the BPTI structure (PDB 5PTI) used as Figure 1 of the report: helices in blue, the β-hairpin in green, the three disulfide bonds as yellow sticks and the P1 residue Lys15 in orange. It needs PyMOL (for example `pip install pymol-open-source`) and the file `5pti.pdb` in the same folder:
+
+```bash
+curl -o 5pti.pdb https://files.rcsb.org/download/5PTI.pdb
+python -c "import pymol; pymol.finish_launching(['pymol','-cq']); exec(open('bpti_pymol.py').read())"
+```
+
+It writes `bpti3.png` and, in `coords.txt`, the image positions of the disulfide bonds and Lys15, which were used to place the labels.
+
 ## Tools
 
 - RCSB PDB Search and Data APIs
@@ -140,3 +158,4 @@ Files starting with `full_` use the full-sequence E-value (the one reported); fi
 - BLAST+ (Camacho et al., *BMC Bioinformatics* 2009)
 - UniProtKB/Swiss-Prot (The UniProt Consortium, *Nucleic Acids Res* 2025)
 - Skylign (Wheeler et al., *BMC Bioinformatics* 2014)
+- PyMOL (Schrödinger, open-source build)
