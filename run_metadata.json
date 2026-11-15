@@ -8,7 +8,7 @@
     "numpy": "2.4.6",
     "pandas": "2.2.3"
   },
-  "pdb_query_date": "2026-11-11T17:21:46+00:00",
+  "pdb_query_date": "2026-11-14T22:12:09+00:00",
   "pdb_entities": 136,
   "pdb_entries": 136,
   "clusters": 22,
@@ -46,8 +46,19 @@
     51,
     55
   ],
+  "consistency_test": {
+    "sequences": 22,
+    "recovered": 22,
+    "missed": [],
+    "evalue_best": 4.4e-32,
+    "evalue_worst": 1.6e-21,
+    "worst_hits": [
+      "5NX1_D",
+      "5NX3_D"
+    ]
+  },
   "uniprot_release": "2026_04",
-  "uniprot_download_date": "2026-11-11T17:24:20+00:00",
+  "uniprot_download_date": "2026-11-14T22:14:34+00:00",
   "uniprot_positives": 398,
   "uniprot_negatives": 575675,
   "positives_removed": 17,
