@@ -1,0 +1,35 @@
+#                                                               --- full sequence ---- --- best 1 domain ---- --- domain number estimation ----
+# target name        accession  query name           accession    E-value  score  bias   E-value  score  bias   exp reg clu  ov env dom rep inc description of target
+#------------------- ---------- -------------------- ---------- --------- ------ ----- --------- ------ -----   --- --- --- --- --- --- --- --- ---------------------
+1F5R_I               -          pdb_kunitz           -            4.4e-32  105.8   6.4     5e-32  105.6   6.4   1.0   1   0   0   1   1   1   1 -
+5YW1_I               -          pdb_kunitz           -            7.1e-32  105.2   5.6   7.6e-32  105.1   5.6   1.0   1   0   0   1   1   1   1 -
+1EJM_B               -          pdb_kunitz           -            1.6e-31  104.0   4.8   1.7e-31  103.9   4.8   1.0   1   0   0   1   1   1   1 -
+1G6X_A               -          pdb_kunitz           -              4e-31  102.7   6.8   4.4e-31  102.6   6.8   1.0   1   0   0   1   1   1   1 -
+1FAK_I               -          pdb_kunitz           -            1.8e-30  100.6   5.6     2e-30  100.5   5.6   1.0   1   0   0   1   1   1   1 -
+1AAP_A               -          pdb_kunitz           -            1.1e-29   98.1   7.1   1.2e-29   98.1   7.1   1.0   1   0   0   1   1   1   1 -
+4U32_X               -          pdb_kunitz           -              4e-29   96.3   2.8   4.3e-29   96.2   2.8   1.0   1   0   0   1   1   1   1 -
+2ZJX_A               -          pdb_kunitz           -            1.6e-28   94.4   0.2   1.7e-28   94.3   0.2   1.0   1   0   0   1   1   1   1 -
+4BQD_A               -          pdb_kunitz           -            6.4e-28   92.5   8.1   7.8e-28   92.2   8.1   1.1   1   0   0   1   1   1   1 -
+1YLC_B               -          pdb_kunitz           -            6.7e-28   92.4   0.4     7e-28   92.4   0.4   1.0   1   0   0   1   1   1   1 -
+1KNT_A               -          pdb_kunitz           -            1.3e-27   91.5   6.4   1.4e-27   91.4   6.4   1.0   1   0   0   1   1   1   1 -
+1ZR0_B               -          pdb_kunitz           -            1.8e-27   91.1   6.3   1.9e-27   90.9   6.3   1.0   1   0   0   1   1   1   1 -
+6HAR_E               -          pdb_kunitz           -            3.6e-27   90.1  13.4   4.4e-27   89.8  13.4   1.1   1   0   0   1   1   1   1 -
+3WNY_A               -          pdb_kunitz           -            4.9e-27   89.6   0.4   5.5e-27   89.5   0.4   1.0   1   0   0   1   1   1   1 -
+6BX8_B               -          pdb_kunitz           -            6.5e-27   89.3  13.7   8.1e-27   89.0  13.7   1.1   1   0   0   1   1   1   1 -
+4DTG_K               -          pdb_kunitz           -            8.1e-27   89.0   9.0   9.1e-27   88.8   9.0   1.0   1   0   0   1   1   1   1 -
+5JB4_A               -          pdb_kunitz           -            3.4e-26   87.0   0.3   3.7e-26   86.8   0.3   1.0   1   0   0   1   1   1   1 -
+1YC0_I               -          pdb_kunitz           -            8.1e-26   85.7   5.5   9.9e-26   85.5   5.5   1.1   1   0   0   1   1   1   1 -
+5JB7_A               -          pdb_kunitz           -            7.2e-25   82.7   0.7   7.8e-25   82.6   0.7   1.0   1   0   0   1   1   1   1 -
+4U30_W               -          pdb_kunitz           -            5.1e-23   76.8   5.4   5.9e-23   76.6   5.4   1.0   1   0   0   1   1   1   1 -
+5NX1_D               -          pdb_kunitz           -            5.5e-22   73.5   5.2   6.5e-22   73.2   5.2   1.1   1   0   0   1   1   1   1 -
+5NX3_D               -          pdb_kunitz           -            1.6e-21   72.0   5.8   1.9e-21   71.8   5.8   1.1   1   0   0   1   1   1   1 -
+#
+# Program:         hmmsearch
+# Version:         3.4 (Aug 2023)
+# Pipeline mode:   SEARCH
+# Query file:      /content/kunitz_hmm_project/03_hmm_build/pdb_kunitz.hmm
+# Target file:     /content/kunitz_hmm_project/01_clustering/pdb_kunitz_clust_rep_seq.fasta
+# Option settings: hmmsearch --tblout /content/kunitz_hmm_project/03_hmm_build/consistency.tbl --max -Z 1000 /content/kunitz_hmm_project/03_hmm_build/pdb_kunitz.hmm /content/kunitz_hmm_project/01_clustering/pdb_kunitz_clust_rep_seq.fasta 
+# Current dir:     /content/kunitz_hmm_project
+# Date:            Sat Nov 14 22:12:30 2026
+# [ok]
